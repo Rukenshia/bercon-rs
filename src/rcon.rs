@@ -64,8 +64,8 @@ impl RConClient {
                     recv.resize(c.0, 0x0);
 
                     let rp = parse_packet(recv);
-                    tx.send(rp.clone()).unwrap();
                     self.send_ack(&rp);
+                    tx.send(rp.clone()).unwrap();
 
                     match rp {
                         RemotePacket::Login(success) => {
@@ -74,12 +74,6 @@ impl RConClient {
                             }
                             self.logged_in.store(true, Ordering::SeqCst);
                         },
-                        RemotePacket::Command(ref seq, ref msg) => {
-                            println!("cmd ack received for {}, message {}", seq, msg);
-                        }
-                        RemotePacket::Log(_, ref message) => {
-                            println!("LOG: {}", message);
-                        }
                         _ => ()
                     };
                 }
