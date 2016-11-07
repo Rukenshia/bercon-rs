@@ -72,8 +72,6 @@ impl RConClient {
                             if !success {
                                 panic!("could not log in");
                             }
-
-                            println!("logged in.");
                             self.logged_in.store(true, Ordering::SeqCst);
                         },
                         RemotePacket::Command(ref seq, ref msg) => {
