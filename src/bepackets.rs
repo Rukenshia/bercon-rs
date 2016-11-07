@@ -1,11 +1,4 @@
-#[derive(PartialEq, Debug)]
-pub enum RconRequest {
-    Login = 0,
-    Command = 1,
-    Log = 2,
-}
-
-#[derive(PartialEq, Debug)]
+#[derive(PartialEq, Debug, Clone)]
 pub enum RemotePacket {
     Login(bool),
     Command(u8, String),
